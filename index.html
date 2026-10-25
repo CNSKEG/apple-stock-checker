@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iPhone Duo Stock</title>
+<meta name="robots" content="noindex">
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  :root {
+    --bg: #f5f5f7; --card: #ffffff; --text: #1d1d1f; --muted: #6e6e73; --line: #e3e3e8;
+    --green: #1a7f37; --green-bg: #e6f4ea; --red: #b42318; --red-bg: #fdecea;
+    --amber: #9a6700; --amber-bg: #fff4d6; --blue: #0066cc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #000000; --card: #1c1c1e; --text: #f5f5f7; --muted: #98989d; --line: #2c2c2e;
+      --green: #4ade80; --green-bg: #0f2e1a; --red: #f87171; --red-bg: #3a1414;
+      --amber: #fbbf24; --amber-bg: #3a2c0a; --blue: #4da3ff; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+      --bg: #000000; --card: #1c1c1e; --text: #f5f5f7; --muted: #98989d; --line: #2c2c2e;
+      --green: #4ade80; --green-bg: #0f2e1a; --red: #f87171; --red-bg: #3a1414;
+      --amber: #fbbf24; --amber-bg: #3a2c0a; --blue: #4da3ff; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding-block: 20px 40px;
+         padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1 { font-size: 24px; margin: 0 0 2px; }
+  h2 { font-size: 15px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 28px 0 10px; }
+  .sub { color: var(--muted); font-size: 14px; }
+  .banner { margin: 16px 0 0; padding: 12px 14px; border-radius: 12px; font-weight: 600; }
+  .banner.ok { background: var(--card); color: var(--muted); font-weight: 400; border: 1px solid var(--line); }
+  .banner.stock { background: var(--green-bg); color: var(--green); }
+  .banner.warn { background: var(--amber-bg); color: var(--amber); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 10px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+  .card.in { border-color: var(--green); box-shadow: 0 0 0 2px var(--green-bg); }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .name { font-weight: 600; }
+  .pill { font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .pill.AVAILABLE { background: var(--green-bg); color: var(--green); }
+  .pill.UNAVAILABLE, .pill.INELIGIBLE { background: var(--red-bg); color: var(--red); }
+  .pill.NOT_YET, .pill.UNKNOWN { background: var(--amber-bg); color: var(--amber); }
+  .meta { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .order { display: inline-block; margin-top: 10px; padding: 9px 16px; border-radius: 10px;
+           background: var(--green); color: var(--card); font-weight: 600; text-decoration: none; }
+  .order.quiet { background: transparent; color: var(--blue); padding: 0; margin-top: 8px; font-weight: 400; font-size: 14px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .stat .v { font-size: 20px; font-weight: 600; }
+  .stat .k { color: var(--muted); font-size: 13px; }
+  ul.events { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+  ul.events li { padding: 10px 14px; border-top: 1px solid var(--line); font-size: 14px; display: flex; gap: 10px; }
+  ul.events li:first-child { border-top: 0; }
+  ul.events .t { color: var(--muted); white-space: nowrap; min-width: 112px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex: none; background: var(--muted); }
+  .dot.in_stock { background: var(--green); } .dot.gone { background: var(--red); }
+  .dot.blind { background: var(--amber); }
+  .empty { color: var(--muted); padding: 14px; }
+  footer { margin-top: 28px; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>iPhone Duo Stock</h1>
+  <div class="sub" id="store">Loading…</div>
+  <div class="banner ok" id="banner">Loading status…</div>
+
+  <h2>Phones (unlocked, in-store pickup)</h2>
+  <div class="grid" id="products"></div>
+
+  <h2>Checker</h2>
+  <div class="stats" id="stats"></div>
+
+  <h2>Stock history</h2>
+  <ul class="events" id="events"></ul>
+
+  <footer>Read-only. The checker pushes updates here; this page has no connection back to it.
+    On Apple's page choose “No AppleCare coverage”, then pickup at the store above.</footer>
+</main>
+<script>
+const REPO = "CNSKEG/apple-stock-checker";
+const API_URL = `https://api.github.com/repos/${REPO}/contents/status.json?ref=data`;
+const RAW_URL = `https://raw.githubusercontent.com/${REPO}/data/status.json`;
+const POLL_MS = 90 * 1000;  // unauthenticated GitHub API allows 60 requests/hour per IP
+let data = null;
+
+async function load() {
+  try {
+    let r = await fetch(API_URL, { headers: { Accept: "application/vnd.github.raw+json" }, cache: "no-store" });
+    if (!r.ok) r = await fetch(`${RAW_URL}?t=${Date.now()}`, { cache: "no-store" });  // rate-limited fallback
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    data = await r.json();
+    render();
+  } catch (e) {
+    const b = document.getElementById("banner");
+    b.className = "banner warn";
+    b.textContent = `Couldn't load status (${e.message}). Retrying…`;
+  }
+}
+
+function ago(iso) {
+  if (!iso) return "never";
+  const s = Math.max(0, (Date.now() - new Date(iso)) / 1000);
+  if (s < 90) return "just now";
+  if (s < 3600) return `${Math.round(s / 60)} min ago`;
+  if (s < 86400) return `${Math.round(s / 3600)} h ago`;
+  return `${Math.round(s / 86400)} d ago`;
+}
+
+function when(iso) {
+  return iso ? new Date(iso).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "";
+}
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+function render() {
+  if (!data) return;
+  const c = data.checker;
+  document.getElementById("store").textContent = `Apple ${data.store.name} · ${data.store.address}`;
+
+  const inStock = data.products.filter(p => p.status === "AVAILABLE");
+  const staleMin = (Date.now() - new Date(data.generated)) / 60000;
+  const b = document.getElementById("banner");
+  if (inStock.length) {
+    b.className = "banner stock";
+    b.textContent = `IN STOCK: ${inStock.map(p => p.title.replace("iPhone Duo ", "")).join(", ")} — order now`;
+  } else if (staleMin > data.heartbeat_minutes * 2 + 5) {
+    b.className = "banner warn";
+    b.textContent = `No update from the checker for ${Math.round(staleMin)} min — it may be offline.`;
+  } else if (c.blind) {
+    b.className = "banner warn";
+    b.textContent = `Checker is having trouble reaching Apple (${c.failures_in_row} failures in a row).`;
+  } else {
+    b.className = "banner ok";
+    b.textContent = `Nothing in stock. Last checked ${ago(c.last_check)}.`;
+  }
+
+  const grid = document.getElementById("products");
+  grid.replaceChildren(...data.products.map(p => {
+    const card = el("div", "card" + (p.status === "AVAILABLE" ? " in" : ""));
+    const row = el("div", "row");
+    row.append(el("span", "name", p.title.replace("iPhone Duo ", "")), el("span", `pill ${p.status}`, p.label));
+    card.append(row, el("div", "meta", `${p.quote}${p.changed ? ` · since ${when(p.changed)}` : ""}`));
+    const a = el("a", p.status === "AVAILABLE" ? "order" : "order quiet",
+                 p.status === "AVAILABLE" ? "Order now" : "Open on apple.com");
+    a.href = p.order_url; a.target = "_blank"; a.rel = "noopener";
+    card.append(a);
+    return card;
+  }));
+
+  const peak = (c.peak_windows || []).map(w => w.join("–")).join(", ");
+  const stats = [
+    [ago(c.last_check), "Last successful check"],
+    [`${c.interval_minutes} min`, "Current check interval"],
+    [`${c.checks_today}`, `Checks today (${c.failures_today} failed)`],
+    [peak || "—", "Every-minute window"],
+  ];
+  document.getElementById("stats").replaceChildren(...stats.map(([v, k]) => {
+    const s = el("div", "card stat");
+    s.append(el("div", "v", v), el("div", "k", k));
+    return s;
+  }));
+
+  const list = document.getElementById("events");
+  const events = [...(data.events || [])].reverse();
+  list.replaceChildren(...(events.length ? events.map(ev => {
+    const li = el("li");
+    li.append(el("span", `dot ${ev.kind}`), el("span", "t", when(ev.time)), el("span", "", ev.text));
+    return li;
+  }) : [el("li", "empty", "No stock seen yet.")]));
+}
+
+load();
+setInterval(load, POLL_MS);
+setInterval(render, 30 * 1000);  // keep "x min ago" fresh between polls
+document.addEventListener("visibilitychange", () => { if (!document.hidden) load(); });
+</script>
+</body>
+</html>
