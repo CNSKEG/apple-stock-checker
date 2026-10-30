@@ -1,0 +1,242 @@
+{
+ "store": {
+  "name": "West Town Mall",
+  "address": "7600 Kingston Pike, Knoxville, TN 37919"
+ },
+ "products": [
+  {
+   "title": "iPhone Duo 256GB Star White",
+   "part": "MK1E4LL/A",
+   "status": "UNAVAILABLE",
+   "label": "Out of stock",
+   "quote": "Currently unavailable",
+   "changed": "2026-10-27T16:39:30",
+   "order_url": "https://www.apple.com/shop/buy-iphone/iphone-duo/7.6-inch-display-256gb-star-white-unlocked"
+  },
+  {
+   "title": "iPhone Duo 256GB Night Sky",
+   "part": "MK1F4LL/A",
+   "status": "UNAVAILABLE",
+   "label": "Out of stock",
+   "quote": "Currently unavailable",
+   "changed": "2026-10-24T08:10:06",
+   "order_url": "https://www.apple.com/shop/buy-iphone/iphone-duo/7.6-inch-display-256gb-night-sky-unlocked"
+  },
+  {
+   "title": "iPhone Duo 512GB Star White",
+   "part": "MK1G4LL/A",
+   "status": "UNAVAILABLE",
+   "label": "Out of stock",
+   "quote": "Currently unavailable",
+   "changed": "2026-10-30T13:03:25",
+   "order_url": "https://www.apple.com/shop/buy-iphone/iphone-duo/7.6-inch-display-512gb-star-white-unlocked"
+  },
+  {
+   "title": "iPhone Duo 512GB Night Sky",
+   "part": "MK1H4LL/A",
+   "status": "UNAVAILABLE",
+   "label": "Out of stock",
+   "quote": "Currently unavailable",
+   "changed": "2026-10-30T09:36:25",
+   "order_url": "https://www.apple.com/shop/buy-iphone/iphone-duo/7.6-inch-display-512gb-night-sky-unlocked"
+  },
+  {
+   "title": "iPhone Duo 1TB Star White",
+   "part": "MK1J4LL/A",
+   "status": "UNAVAILABLE",
+   "label": "Out of stock",
+   "quote": "Currently unavailable",
+   "changed": "2026-10-29T19:54:41",
+   "order_url": "https://www.apple.com/shop/buy-iphone/iphone-duo/7.6-inch-display-1tb-star-white-unlocked"
+  },
+  {
+   "title": "iPhone Duo 1TB Night Sky",
+   "part": "MK1L4LL/A",
+   "status": "UNAVAILABLE",
+   "label": "Out of stock",
+   "quote": "Currently unavailable",
+   "changed": "2026-10-29T19:54:41",
+   "order_url": "https://www.apple.com/shop/buy-iphone/iphone-duo/7.6-inch-display-1tb-night-sky-unlocked"
+  }
+ ],
+ "events": [
+  {
+   "time": "2026-10-24T08:15:42",
+   "kind": "in_stock",
+   "text": "iPhone Duo 512GB Star White in stock (first sighting)"
+  },
+  {
+   "time": "2026-10-24T08:18:58",
+   "kind": "gone",
+   "text": "iPhone Duo 512GB Star White sold out"
+  },
+  {
+   "time": "2026-10-27T08:58:09",
+   "kind": "blind",
+   "text": "Checker blind after 5 failed checks"
+  },
+  {
+   "time": "2026-10-27T09:13:34",
+   "kind": "recovered",
+   "text": "Checker recovered"
+  },
+  {
+   "time": "2026-10-27T16:34:36",
+   "kind": "in_stock",
+   "text": "iPhone Duo 256GB Star White in stock: Available Today"
+  },
+  {
+   "time": "2026-10-27T16:39:30",
+   "kind": "gone",
+   "text": "iPhone Duo 256GB Star White sold out"
+  },
+  {
+   "time": "2026-10-28T12:55:12",
+   "kind": "blind",
+   "text": "Checker blind after 5 failed checks"
+  },
+  {
+   "time": "2026-10-28T13:10:54",
+   "kind": "recovered",
+   "text": "Checker recovered"
+  },
+  {
+   "time": "2026-10-29T09:28:17",
+   "kind": "blind",
+   "text": "Checker blind after 5 failed checks"
+  },
+  {
+   "time": "2026-10-29T09:43:48",
+   "kind": "recovered",
+   "text": "Checker recovered"
+  },
+  {
+   "time": "2026-10-29T17:14:18",
+   "kind": "blind",
+   "text": "Checker blind after 5 failed checks"
+  },
+  {
+   "time": "2026-10-29T17:29:37",
+   "kind": "recovered",
+   "text": "Checker recovered"
+  },
+  {
+   "time": "2026-10-29T19:25:09",
+   "kind": "blind",
+   "text": "Checker blind after 5 failed checks"
+  },
+  {
+   "time": "2026-10-29T19:40:44",
+   "kind": "recovered",
+   "text": "Checker recovered"
+  },
+  {
+   "time": "2026-10-30T09:12:22",
+   "kind": "in_stock",
+   "text": "iPhone Duo 512GB Night Sky in stock: Available Today"
+  },
+  {
+   "time": "2026-10-30T09:14:22",
+   "kind": "in_stock",
+   "text": "iPhone Duo 512GB Star White in stock: Available Today"
+  },
+  {
+   "time": "2026-10-30T09:14:23",
+   "kind": "gone",
+   "text": "iPhone Duo 512GB Night Sky sold out"
+  },
+  {
+   "time": "2026-10-30T09:17:19",
+   "kind": "gone",
+   "text": "iPhone Duo 512GB Star White sold out"
+  },
+  {
+   "time": "2026-10-30T09:34:30",
+   "kind": "in_stock",
+   "text": "iPhone Duo 512GB Night Sky in stock: Available Today"
+  },
+  {
+   "time": "2026-10-30T09:36:25",
+   "kind": "gone",
+   "text": "iPhone Duo 512GB Night Sky sold out"
+  },
+  {
+   "time": "2026-10-30T09:43:23",
+   "kind": "in_stock",
+   "text": "iPhone Duo 512GB Star White in stock: Available Today"
+  },
+  {
+   "time": "2026-10-30T09:45:11",
+   "kind": "gone",
+   "text": "iPhone Duo 512GB Star White sold out"
+  },
+  {
+   "time": "2026-10-30T11:55:25",
+   "kind": "in_stock",
+   "text": "iPhone Duo 512GB Star White in stock: Available Today"
+  },
+  {
+   "time": "2026-10-30T11:59:11",
+   "kind": "gone",
+   "text": "iPhone Duo 512GB Star White sold out"
+  },
+  {
+   "time": "2026-10-30T13:01:18",
+   "kind": "in_stock",
+   "text": "iPhone Duo 512GB Star White in stock: Available Today"
+  },
+  {
+   "time": "2026-10-30T13:03:25",
+   "kind": "gone",
+   "text": "iPhone Duo 512GB Star White sold out"
+  }
+ ],
+ "checker": {
+  "last_check": "2026-10-30T14:47:14",
+  "last_attempt": "2026-10-30T14:47:06",
+  "failures_in_row": 0,
+  "blind": false,
+  "interval_minutes": 2,
+  "checks_today": 394,
+  "failures_today": 2,
+  "peak_windows": [
+   [
+    "09:00",
+    "11:00"
+   ],
+   [
+    "15:30",
+    "17:30"
+   ]
+  ],
+  "schedule": [
+   [
+    "06:00",
+    "09:00",
+    2
+   ],
+   [
+    "09:00",
+    "11:00",
+    1
+   ],
+   [
+    "11:00",
+    "15:30",
+    2
+   ],
+   [
+    "15:30",
+    "17:30",
+    1
+   ],
+   [
+    "17:30",
+    "20:00",
+    2
+   ]
+  ]
+ },
+ "heartbeat_minutes": 10,
+ "generated": "2026-10-30T14:47:14-04:00"
+}
